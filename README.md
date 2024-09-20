@@ -24,13 +24,18 @@
 
 如果出於教育或研究目的，您決定運行這些腳本：
 
-1. 下載 `app.py`、`ran.py` 和 `requirements.txt` 文件。
-2. 確保您的系統已安裝 Python 環境。
-3. 安裝必要的依賴庫：
+0. 先以需要有一個高雄市openID帳號
+1. 修改在app中的`
+   username.send_keys("輸入帳號S0123456")
+   password.send_keys("輸入密碼qwerty123")
+`
+3. 下載 `app.py`、`ran.py` 和 `requirements.txt` 文件。
+4. 確保您的系統已安裝 Python 環境。
+5. 安裝必要的依賴庫：
    ```
    pip install -r requirements.txt
    ```
-4. 運行 `ran.py` 檔案：
+6. 運行 `ran.py` 檔案：
    ```
    python ran.py
    ```
