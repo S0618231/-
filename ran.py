@@ -30,9 +30,9 @@ def run_multi_process(script_to_run, start, end, num_processes):
         p.join()
 
 def main():
-    script_to_run = "app.py"  # 您要運行的腳本名稱
-    start_bookID = 31
-    end_bookID = 60
+    script_to_run = "app.py" # 您要運行的腳本名稱
+    start_bookID = 61
+    end_bookID = 100
     
     # 選擇執行模式
     use_multi_process = input("是否使用多進程執行？(y/n): ").lower() == 'y'
