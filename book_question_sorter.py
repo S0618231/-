@@ -33,6 +33,32 @@ def write_sorted_questions(questions):
                 question[1] = clean_question_text(question[1])
             writer.writerow(question)
 
+def check_and_fix_missing_numbers(filename):
+    with open(filename, 'r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        questions = list(reader)
+
+    last_number = int(questions[-1][0])
+    fixed_questions = []
+    current_number = 1
+
+    for question in questions:
+        question_number = int(question[0])
+        while current_number < question_number:
+            fixed_questions.append([str(current_number), "", "", "", "", "", ""])
+            print(f"已插入缺失的題號: {current_number}")
+            current_number += 1
+        fixed_questions.append(question)
+        current_number = question_number + 1
+
+    if fixed_questions != questions:
+        with open(filename, 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerows(fixed_questions)
+        print("檢查和修復完成")
+    else:
+        print("題號連續，無需修復")
+
 def main():
     if not os.path.exists('book_all.csv'):
         print("book_all.csv 不存在，創建新文件...")
@@ -44,6 +70,9 @@ def main():
     write_sorted_questions(sorted_questions)
     print(f"排序完成，共處理 {len(sorted_questions)} 個問題。")
     print("結果已寫入 book_all.csv")
+
+    # 檢查並修復缺失的題號
+    check_and_fix_missing_numbers('book_all.csv')
 
 if __name__ == "__main__":
     main()
